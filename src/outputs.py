@@ -5,7 +5,7 @@ import logging
 
 from prettytable import PrettyTable
 
-from constants import BASE_DIR, DATETIME_FORMAT
+from src.constants import BASE_DIR, DATETIME_FORMAT
 
 
 def control_output(
@@ -14,6 +14,7 @@ def control_output(
 ) -> None:
     """Выбрать способ вывода результатов парсинга."""
     output = cli_args.output
+
     if output == 'pretty':
         pretty_output(results)
     elif output == 'file':

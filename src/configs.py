@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 from collections.abc import Iterable
 from logging.handlers import RotatingFileHandler
 
-from constants import BASE_DIR
+from src.constants import BASE_DIR
 
 LOG_FORMAT = '%(asctime)s - [%(levelname)s] - %(message)s'
 DT_FORMAT = '%d.%m.%Y %H:%M:%S'
@@ -18,7 +18,7 @@ def configure_argument_parser(
         'mode', choices=available_modes, help='Режимы работы парсера'
     )
     parser.add_argument(
-        '-c', '--clear-cache', action='store_true', help='Очистка кэша'
+        '-c', '--clear-cache', action='store_true', help='Очистка кеша'
     )
     parser.add_argument(
         '-o',
