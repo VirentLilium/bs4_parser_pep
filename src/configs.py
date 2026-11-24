@@ -3,39 +3,56 @@ from argparse import ArgumentParser
 from collections.abc import Iterable
 from logging.handlers import RotatingFileHandler
 
-from src.constants import BASE_DIR
-
-LOG_FORMAT = '%(asctime)s - [%(levelname)s] - %(message)s'
-DT_FORMAT = '%d.%m.%Y %H:%M:%S'
+from src.constants import (
+    CLEAR_CACHE_HELP,
+    DT_FORMAT,
+    ENCODING,
+    LOG_BACKUP_COUNT,
+    LOG_DIR,
+    LOG_FILE,
+    LOG_FORMAT,
+    LOG_MAX_BYTES,
+    MODE_HELP,
+    OUTPUT_CHOICES,
+    OUTPUT_HELP,
+    PARSER_DESCRIPTION,
+)
 
 
 def configure_argument_parser(
     available_modes: Iterable[str],
 ) -> ArgumentParser:
     """Настроить парсер аргументов командной строки."""
-    parser = ArgumentParser(description='Парсер документации Python')
+    parser = ArgumentParser(description=PARSER_DESCRIPTION)
     parser.add_argument(
-        'mode', choices=available_modes, help='Режимы работы парсера'
+        'mode',
+        choices=available_modes,
+        help=MODE_HELP,
     )
     parser.add_argument(
-        '-c', '--clear-cache', action='store_true', help='Очистка кеша'
+        '-c',
+        '--clear-cache',
+        action='store_true',
+        help=CLEAR_CACHE_HELP,
     )
     parser.add_argument(
         '-o',
         '--output',
-        choices=('pretty', 'file'),
-        help='Дополнительные способы вывода данных',
+        choices=OUTPUT_CHOICES,
+        help=OUTPUT_HELP,
     )
     return parser
 
 
 def configure_logging() -> None:
     """Настроить запись логов в файл с ротацией и вывод в терминал."""
-    log_dir = BASE_DIR / 'logs'
-    log_dir.mkdir(exist_ok=True)
-    log_file = log_dir / 'parser.log'
+    LOG_DIR.mkdir(exist_ok=True)
+
     rotating_handler = RotatingFileHandler(
-        log_file, maxBytes=10**6, backupCount=5, encoding='utf-8'
+        LOG_FILE,
+        maxBytes=LOG_MAX_BYTES,
+        backupCount=LOG_BACKUP_COUNT,
+        encoding=ENCODING,
     )
     logging.basicConfig(
         datefmt=DT_FORMAT,
