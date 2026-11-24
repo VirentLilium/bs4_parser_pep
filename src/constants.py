@@ -2,16 +2,16 @@ from pathlib import Path
 
 # Пути к директориям и файлам проекта.
 BASE_DIR = Path(__file__).parent
-DOWNLOADS_DIR = 'downloads'
+DOWNLOADS_DIR_NAME = 'downloads'
 LOG_DIR = BASE_DIR / 'logs'
 LOG_FILE = LOG_DIR / 'parser.log'
-RESULTS_DIR = 'results'
+RESULTS_DIR_NAME = 'results'
 
 # Адреса сайтов для парсинга.
 MAIN_DOC_URL = 'https://docs.python.org/3/'
 PEP_PYTHON_URL = 'https://peps.python.org/'
 
-# Настройки кодировки, парсера, диалекта.
+# Настройки обработки данных.
 ENCODING = 'utf-8'
 FILE_DIALECT = 'unix'
 PARSER_FEATURES = 'lxml'
@@ -32,7 +32,7 @@ PRETTY_OUTPUT = 'pretty'
 FILE_OUTPUT = 'file'
 OUTPUT_CHOICES = (PRETTY_OUTPUT, FILE_OUTPUT)
 
-# Допустимые статусы PEP
+# Допустимые статусы PEP.
 EXPECTED_STATUS = {
     'A': ('Active', 'Accepted'),
     'D': ('Deferred',),
