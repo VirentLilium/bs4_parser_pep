@@ -11,8 +11,9 @@ RESULTS_DIR = 'results'
 MAIN_DOC_URL = 'https://docs.python.org/3/'
 PEP_PYTHON_URL = 'https://peps.python.org/'
 
-# Настройки кодировки и парсера.
+# Настройки кодировки, парсера, диалекта.
 ENCODING = 'utf-8'
+FILE_DIALECT = 'unix'
 PARSER_FEATURES = 'lxml'
 
 # Настройки логирования.
