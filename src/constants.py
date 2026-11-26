@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import urljoin
 
 # Пути к директориям и файлам проекта.
 BASE_DIR = Path(__file__).parent
@@ -9,7 +10,8 @@ RESULTS_DIR_NAME = 'results'
 
 # Адреса сайтов для парсинга.
 MAIN_DOC_URL = 'https://docs.python.org/3/'
-PEP_PYTHON_URL = 'https://peps.python.org/'
+PEP_URL = 'https://peps.python.org/'
+PEP_NUMERICAL_URL = urljoin(PEP_URL, 'numerical/')
 
 # Настройки обработки данных.
 ENCODING = 'utf-8'

@@ -12,7 +12,7 @@ from src.constants import (
     BASE_DIR,
     DOWNLOADS_DIR_NAME,
     MAIN_DOC_URL,
-    PEP_PYTHON_URL,
+    PEP_NUMERICAL_URL,
 )
 from src.exceptions import PageLoadException, ParserFindTagException
 from src.outputs import control_output
@@ -135,7 +135,7 @@ def log_pep_results(
 def pep(session: CachedSession) -> list[tuple[str, str | int]]:
     """Собрать статистику статусов документов PEP."""
     statuses_dict = {}
-    soup = get_soup(session, PEP_PYTHON_URL)
+    soup = get_soup(session, PEP_NUMERICAL_URL)
     pep_list = soup.find_all('tr', class_=['row-even', 'row-odd'])
 
     logging.info('Начата проверка статусов PEP.')
@@ -160,7 +160,7 @@ def pep(session: CachedSession) -> list[tuple[str, str | int]]:
                 skipped_pep_zero = True
                 continue
 
-            link_url = urljoin(PEP_PYTHON_URL, link['href'])
+            link_url = urljoin(PEP_NUMERICAL_URL, link['href'])
 
             actual_status, mismatch = parse_pep(
                 session, link_url, preview_status
